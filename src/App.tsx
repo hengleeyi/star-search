@@ -1,13 +1,12 @@
+import Home from './Home';
+import { SearchProvider } from './components/SearchProvider';
 
-function App() {
-
+const App = () => {
   return (
-    <>
-      <div className="m-auto w-10/12 flex flex-col items-center">
-        App
-      </div>
-    </>
+    <SearchProvider>
+      <Home />
+    </SearchProvider>
   );
-}
+};
 
 export default App;
