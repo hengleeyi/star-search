@@ -13,7 +13,7 @@ const FilmsSuggestion = memo(({ searchTerm, updateResDataStates }: FilmsSuggesti
   const { data } = useFilms(searchTerm);
   useUpdateResDataStates('films', data, updateResDataStates);
 
-  return <SuggestionList data={data} title="Films" />;
+  return <SuggestionList data={data} title="Films" searchTerm={searchTerm}/>;
 });
 
 export default FilmsSuggestion;

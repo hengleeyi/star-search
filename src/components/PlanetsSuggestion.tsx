@@ -14,7 +14,7 @@ const PlanetsSuggestion = memo(({ searchTerm, updateResDataStates }: PlanetsSugg
   updateResDataStates('planets', false);
   useUpdateResDataStates('planets', data, updateResDataStates);
 
-  return <SuggestionList data={data} title="Planets" />;
+  return <SuggestionList data={data} title="Planets" searchTerm={searchTerm}/>;
 });
 
 export default PlanetsSuggestion;

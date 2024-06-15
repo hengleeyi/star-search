@@ -13,7 +13,7 @@ const PeopleSuggestion = memo(({ searchTerm, updateResDataStates }: PeopleSugges
   const { data } = usePeople(searchTerm);
   useUpdateResDataStates('people', data, updateResDataStates);
 
-  return <SuggestionList data={data} title="People" />;
+  return <SuggestionList data={data} title="People" searchTerm={searchTerm}/>;
 });
 
 export default PeopleSuggestion;

@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import { Link } from 'react-router-dom';
 
 type Item = {
   name?: string;
@@ -6,11 +7,12 @@ type Item = {
 };
 
 type SuggestionListProps = {
+  searchTerm: string;
   title: string;
   data: { results: Item[] } | undefined;
 };
 
-const SuggestionList = memo(({ data, title }: SuggestionListProps) => {
+const SuggestionList = memo(({ data, title, searchTerm }: SuggestionListProps) => {
   return (
     <>
       {data && data.results.length > 0 && (
@@ -27,7 +29,12 @@ const SuggestionList = memo(({ data, title }: SuggestionListProps) => {
               );
             })}
           </ul>
-          <a className="text-sm py-1 px-4">View more</a>
+          <Link
+            className="text-sm py-1 px-4"
+            to={`categories/${title.toLowerCase()}?search=${searchTerm}`}
+          >
+            View more
+          </Link>
         </section>
       )}
     </>

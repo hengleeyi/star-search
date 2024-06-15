@@ -16,13 +16,8 @@ const Suggestions = memo(({ searchTerm, resultStatus, updateResDataStates }: Sug
   const isFetchingPeople = useIsFetching({ queryKey: ['people'] });
   const isFetchingPlanets = useIsFetching({ queryKey: ['planets'] });
   const isFetchingSpecies = useIsFetching({ queryKey: ['species'] });
-
   const isLoading = !!isFetchingPeople || !!isFetchingPlanets || !!isFetchingSpecies;
   const showNotFound = resultStatus === 'noData';
-
-  // if (showNotFound) {
-  //   return <div className="mt-4 w-10/12 border border-slate-300 rounded-md">Not Found</div>;
-  // }
 
   return (
     <div className="mt-4 w-10/12 border border-slate-300 rounded-md">

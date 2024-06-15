@@ -13,7 +13,7 @@ const SpeciesSuggestion = memo(({ searchTerm, updateResDataStates }: SpeciesSugg
   const { data } = useSpecies(searchTerm);
   useUpdateResDataStates('species', data, updateResDataStates);
 
-  return <SuggestionList data={data} title="Species" />;
+  return <SuggestionList data={data} title="Species" searchTerm={searchTerm}/>;
 });
 
 export default SpeciesSuggestion;

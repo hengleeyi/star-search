@@ -1,13 +1,10 @@
 import { useEffect } from 'react';
 import { ResourceKeys } from '../components/SearchProvider';
-import { z } from 'zod';
-import { baseResponseSchema } from '../schemas/response';
-
-type BaseResponseSchema = z.infer<typeof baseResponseSchema>;
+import { BaseResponse } from '../schemas/response';
 
 function useUpdateResDataStates(
   name: ResourceKeys,
-  data: BaseResponseSchema | undefined,
+  data: BaseResponse | undefined,
   updateResDataStates: (key: ResourceKeys, value: boolean | null) => void
 ) {
   useEffect(() => {
