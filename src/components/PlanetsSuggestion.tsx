@@ -11,10 +11,10 @@ type PlanetsSuggestionProps = {
 
 const PlanetsSuggestion = memo(({ searchTerm, updateResDataStates }: PlanetsSuggestionProps) => {
   const { data } = usePlanets(searchTerm);
-  updateResDataStates('planets', false);
-  useUpdateResDataStates('planets', data, updateResDataStates);
+  const pageData = data?.pages[0]
+  useUpdateResDataStates('planets', pageData, updateResDataStates);
 
-  return <SuggestionList data={data} title="Planets" searchTerm={searchTerm}/>;
+  return <SuggestionList data={pageData} title="Planets" searchTerm={searchTerm}/>;
 });
 
 export default PlanetsSuggestion;

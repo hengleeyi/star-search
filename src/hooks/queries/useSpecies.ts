@@ -1,11 +1,11 @@
 import { speciesResponseSchema } from '../../schemas/response';
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 
 const useSpecies = (searchTerm: string | null) => {
-  return useQuery({
+  return useInfiniteQuery({
     queryKey: ['species', searchTerm],
-    queryFn: async () => {
-      const response = await fetch(`https://swapi.dev/api/species/?search=${searchTerm}`);
+    queryFn: async ({ pageParam }) => {
+      const response = await fetch(`${pageParam}`);
       const data = await response.json();
       const validation = speciesResponseSchema.safeParse(data);
 
@@ -15,8 +15,10 @@ const useSpecies = (searchTerm: string | null) => {
         throw new Error('Incorrect data format');
       }
     },
+    initialPageParam: `https://swapi.dev/api/species/?search=${searchTerm}`,
     retry: 1,
     staleTime: 30 * 1000,
+    getNextPageParam: (lastPage) => lastPage.next,
   });
 };
 

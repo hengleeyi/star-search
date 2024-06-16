@@ -11,9 +11,10 @@ type SpeciesSuggestionProps = {
 
 const SpeciesSuggestion = memo(({ searchTerm, updateResDataStates }: SpeciesSuggestionProps) => {
   const { data } = useSpecies(searchTerm);
-  useUpdateResDataStates('species', data, updateResDataStates);
+  const pageData = data?.pages[0]
+  useUpdateResDataStates('species', pageData, updateResDataStates);
 
-  return <SuggestionList data={data} title="Species" searchTerm={searchTerm}/>;
+  return <SuggestionList data={pageData} title="Species" searchTerm={searchTerm}/>;
 });
 
 export default SpeciesSuggestion;

@@ -16,13 +16,13 @@ const PeopleCard = ({ data, mode }: PeopleCardProps) => {
         !isGrid && 'grid gap-4 grid-cols-3'
       )}
     >
-      <h4 className="text-xl font-bold">{data.name}</h4>
+      <h4 className={clsx('font-bold', isGrid && 'text-xl', !isGrid && 'text-xl')}>{data.name}</h4>
       <ul className={clsx(isGrid && 'mt-4')}>
-        <li className="flex">
+        <li className={clsx('flex', !isGrid && 'flex-col')}>
           <h4 className="font-semibold">Gender:</h4>
           <p>{data.gender}</p>
         </li>
-        <li className="flex">
+        <li className={clsx('flex', !isGrid && 'flex-col')}>
           <h4 className="font-semibold">Birthday Year:</h4>
           <p>{data.birth_year}</p>
         </li>

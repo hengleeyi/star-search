@@ -11,9 +11,10 @@ type PeopleSuggestionProps = {
 
 const PeopleSuggestion = memo(({ searchTerm, updateResDataStates }: PeopleSuggestionProps) => {
   const { data } = usePeople(searchTerm);
-  useUpdateResDataStates('people', data, updateResDataStates);
+  const pageData = data?.pages[0]
+  useUpdateResDataStates('people', pageData, updateResDataStates);
 
-  return <SuggestionList data={data} title="People" searchTerm={searchTerm}/>;
+  return <SuggestionList data={pageData} title="People" searchTerm={searchTerm}/>;
 });
 
 export default PeopleSuggestion;

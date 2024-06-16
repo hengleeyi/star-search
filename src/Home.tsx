@@ -16,7 +16,7 @@ const Home = () => {
     setSearchTerm(value);
   };
   return (
-    <div className="m-auto w-10/12 flex flex-col items-center">
+    <div className="mx-8 flex flex-col items-center">
       <input
         type="text"
         value={searchTerm}

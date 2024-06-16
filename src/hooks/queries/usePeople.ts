@@ -1,11 +1,11 @@
 import { peopleResponseSchema } from '../../schemas/response';
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 
 const usePeople = (searchTerm: string | null) => {
-  return useQuery({
+  return useInfiniteQuery({
     queryKey: ['people', searchTerm],
-    queryFn: async () => {
-      const response = await fetch(`https://swapi.dev/api/people/?search=${searchTerm}`);
+    queryFn: async ({ pageParam }) => {
+      const response = await fetch(`${pageParam}`);
       const data = await response.json();
       const validation = peopleResponseSchema.safeParse(data);
 
@@ -15,7 +15,9 @@ const usePeople = (searchTerm: string | null) => {
         throw new Error('Incorrect data format');
       }
     },
+    initialPageParam: `https://swapi.dev/api/people/?search=${searchTerm}`,
     staleTime: 30 * 1000,
+    getNextPageParam: (lastPage) => lastPage.next,
   });
 };
 

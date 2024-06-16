@@ -11,9 +11,10 @@ type FilmsSuggestionProps = {
 
 const FilmsSuggestion = memo(({ searchTerm, updateResDataStates }: FilmsSuggestionProps) => {
   const { data } = useFilms(searchTerm);
-  useUpdateResDataStates('films', data, updateResDataStates);
+  const pageData = data?.pages[0]
+  useUpdateResDataStates('films', pageData, updateResDataStates);
 
-  return <SuggestionList data={data} title="Films" searchTerm={searchTerm}/>;
+  return <SuggestionList data={pageData} title="Films" searchTerm={searchTerm}/>;
 });
 
 export default FilmsSuggestion;

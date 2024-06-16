@@ -6,7 +6,6 @@ import CategoryPage from './CategoryPage';
 const Categories = () => {
   return (
     <Routes>
-      {/* <Route index element={<h1>Blog Index</h1>} /> */}
       <Route path=":categoryName" element={<CategoryPage/>} />
     </Routes>
   );

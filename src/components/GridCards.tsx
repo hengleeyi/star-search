@@ -2,10 +2,12 @@ import clsx from 'clsx';
 import { DisplayMode } from '../CategoryPage';
 import { People, ResourceResponseMap, ResourceResponseType } from '../schemas/response';
 import GridCard from './GridCard';
+import { InfiniteData } from '@tanstack/react-query';
+import React from 'react';
 
 type GridCardsProps<T extends ResourceResponseType> = {
   type: T;
-  data: ResourceResponseMap[T];
+  data: InfiniteData<ResourceResponseMap[T]>;
   mode: DisplayMode;
 };
 
@@ -19,13 +21,17 @@ function GridCards<T extends ResourceResponseType>({ data, type, mode }: GridCar
         !isGrid && 'grid-cols-1'
       )}
     >
-      {data.results.map((card) => {
-        let cardId = '';
-        if (type === 'people') {
-          cardId = (card as People).name;
-        }
-        return <GridCard key={cardId} type={type} data={card} mode={mode} />;
-      })}
+      {data.pages.map((group, i) => (
+        <React.Fragment key={i}>
+          {group.results.map((card) => {
+            let cardId = '';
+            if (type === 'people') {
+              cardId = (card as People).name;
+            }
+            return <GridCard key={cardId} type={type} data={card} mode={mode} />;
+          })}
+        </React.Fragment>
+      ))}
     </div>
   );
 }
