@@ -1,6 +1,7 @@
 import { Suspense, lazy, memo } from 'react';
 import { ResourceKeys, ResultStatus } from './SearchProvider';
 import { useIsFetching } from '@tanstack/react-query';
+import { ErrorBoundary } from 'react-error-boundary';
 
 const PeopleSuggestion = lazy(() => import('./PeopleSuggestion'));
 const PlanetsSuggestion = lazy(() => import('./PlanetsSuggestion'));
@@ -22,20 +23,27 @@ const Suggestions = memo(({ searchTerm, resultStatus, updateResDataStates }: Sug
 
   return (
     <div className="mt-4 w-full md:w-10/12 border border-violet-500 rounded-lg max-h-96 overflow-y-auto p-2 shadow-md">
-      <Suspense fallback={<div className="py-1 px-2 text-violet-800">Loading ...</div>}>
-        <PeopleSuggestion searchTerm={searchTerm} updateResDataStates={updateResDataStates} />
-      </Suspense>
-      <Suspense>
-        <PlanetsSuggestion searchTerm={searchTerm} updateResDataStates={updateResDataStates} />
-      </Suspense>
-      <Suspense>
-        <SpeciesSuggestion searchTerm={searchTerm} updateResDataStates={updateResDataStates} />
-      </Suspense>
-      <Suspense>
-        <FilmsSuggestion searchTerm={searchTerm} updateResDataStates={updateResDataStates} />
-      </Suspense>
-      {isLoading && <div className="py-1 px-2 text-violet-800">Loading ...</div>}
-      {showNotFound && <div className="py-1 px-2">Not Found :'(</div>}
+      <ErrorBoundary
+        fallback={<div className="py-1 px-2">Something went wrong, pleaase search later.</div>}
+      >
+        <Suspense fallback={<div className="py-1 px-2 text-violet-800">Loading ...</div>}>
+          <PeopleSuggestion searchTerm={searchTerm} updateResDataStates={updateResDataStates} />
+        </Suspense>
+        <Suspense>
+          <PlanetsSuggestion searchTerm={searchTerm} updateResDataStates={updateResDataStates} />
+        </Suspense>
+        <Suspense>
+          <SpeciesSuggestion searchTerm={searchTerm} updateResDataStates={updateResDataStates} />
+        </Suspense>
+        <Suspense>
+          <FilmsSuggestion searchTerm={searchTerm} updateResDataStates={updateResDataStates} />
+        </Suspense>
+        {!isLoading && resultStatus === 'init' && (
+          <div className="py-1 px-2 text-violet-800">Loading ...</div>
+        )}
+        {isLoading && <div className="py-1 px-2 text-violet-800">Loading ...</div>}
+        {showNotFound && <div className="py-1 px-2">Not Found :'(</div>}
+      </ErrorBoundary>
     </div>
   );
 });
