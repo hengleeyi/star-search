@@ -2,18 +2,15 @@
 
 ## Preview
 
-[![Preview](https://github.com/hengleeyi/vite-check/blob/main/preview.png?raw=true)](http://github.com/hengleeyi/vite-check/)
+[![Preview](https://github.com/hengleeyi/star-search/blob/main/preview.png?raw=true)](http://github.com/hengleeyi/star-search/)
 
 ## Website
 
-https://vite-check-six.vercel.app/
 
 ## Stacks
 - React 18.2
 - Typescript 5.2
 - Tailwind CSS
-- Vite
-- Vitest
 
 ## Installing Dependencies
 
@@ -25,14 +22,4 @@ npm install
 
 ```bash
 npm run dev
-```
-
-## Running Test
-```bash
-npm run test
-```
-
-## Running Test Coverage
-```bash
-npm run coverage
 ```
