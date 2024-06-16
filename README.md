@@ -5,7 +5,7 @@
 [![Preview](https://github.com/hengleeyi/star-search/blob/main/preview.png?raw=true)](http://github.com/hengleeyi/star-search/)
 
 ## Website
-
+https://star-search.vercel.app/
 
 ## Stacks
 - React 18.2
