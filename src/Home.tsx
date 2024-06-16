@@ -27,8 +27,6 @@ const Home = () => {
         placeholder="Search.."
         className="w-full md:w-10/12 search-input"
       />
-
-      {/* <Suspense fallback={<p>wating all ...</p>}> */}
       {deferredSearchTerm && (
         <Suggestions
           searchTerm={deferredSearchTerm}
@@ -36,7 +34,6 @@ const Home = () => {
           updateResDataStates={updateResDataStates}
         />
       )}
-      {/* </Suspense> */}
     </div>
   );
 };

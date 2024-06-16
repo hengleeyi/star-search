@@ -1,10 +1,11 @@
-import { memo } from 'react';
+import { Suspense, lazy, memo } from 'react';
 import { ResourceKeys, ResultStatus } from './SearchProvider';
-import PeopleSuggestion from './PeopleSuggestion';
-import PlanetsSuggestion from './PlanetsSuggestion';
-import SpeciesSuggestion from './SpeciesSuggestion';
 import { useIsFetching } from '@tanstack/react-query';
-import FilmsSuggestion from './FilmsSuggestion';
+
+const PeopleSuggestion = lazy(() => import('./PeopleSuggestion'));
+const PlanetsSuggestion = lazy(() => import('./PlanetsSuggestion'));
+const SpeciesSuggestion = lazy(() => import('./SpeciesSuggestion'));
+const FilmsSuggestion = lazy(() => import('./FilmsSuggestion'));
 
 type SuggestionsProps = {
   searchTerm: string;
@@ -21,10 +22,18 @@ const Suggestions = memo(({ searchTerm, resultStatus, updateResDataStates }: Sug
 
   return (
     <div className="mt-4 w-full md:w-10/12 border border-violet-500 rounded-lg max-h-96 overflow-y-auto p-2 shadow-md">
-      <PeopleSuggestion searchTerm={searchTerm} updateResDataStates={updateResDataStates} />
-      <PlanetsSuggestion searchTerm={searchTerm} updateResDataStates={updateResDataStates} />
-      <SpeciesSuggestion searchTerm={searchTerm} updateResDataStates={updateResDataStates} />
-      <FilmsSuggestion searchTerm={searchTerm} updateResDataStates={updateResDataStates} />
+      <Suspense fallback={<div className="py-1 px-2 text-violet-800">Loading ...</div>}>
+        <PeopleSuggestion searchTerm={searchTerm} updateResDataStates={updateResDataStates} />
+      </Suspense>
+      <Suspense>
+        <PlanetsSuggestion searchTerm={searchTerm} updateResDataStates={updateResDataStates} />
+      </Suspense>
+      <Suspense>
+        <SpeciesSuggestion searchTerm={searchTerm} updateResDataStates={updateResDataStates} />
+      </Suspense>
+      <Suspense>
+        <FilmsSuggestion searchTerm={searchTerm} updateResDataStates={updateResDataStates} />
+      </Suspense>
       {isLoading && <div className="py-1 px-2 text-violet-800">Loading ...</div>}
       {showNotFound && <div className="py-1 px-2">Not Found :'(</div>}
     </div>
