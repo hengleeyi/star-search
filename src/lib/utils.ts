@@ -15,6 +15,10 @@ export const checkResultStatus = (resDataStates: ResDataStates): ResultStatus =>
     }
   });
 
+  if (hasDataCount < values.length && hasDataCount > 0) {
+    resultState = 'someData';
+  }
+
   if (hasDataCount === values.length) {
     resultState = 'hasData';
   }

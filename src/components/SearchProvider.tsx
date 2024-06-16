@@ -5,7 +5,7 @@ import { useImmer } from 'use-immer';
 const initNotFoundStates = { people: null, planets: null, species: null, films: null };
 export type ResourceKeys = keyof typeof initNotFoundStates;
 export type ResDataStates = Record<ResourceKeys, boolean | null>;
-export type ResultStatus = 'init' | 'hasData' | 'noData';
+export type ResultStatus = 'init' | 'hasData' | 'noData' | 'someData';
 type SearchContextType = {
   resultStatus: ResultStatus;
   updateResDataStates: (key: ResourceKeys, value: boolean | null) => void;

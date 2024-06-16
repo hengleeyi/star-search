@@ -15,10 +15,12 @@ type SuggestionsProps = {
 };
 
 const Suggestions = memo(({ searchTerm, resultStatus, updateResDataStates }: SuggestionsProps) => {
-  const isFetchingPeople = useIsFetching({ queryKey: ['people'] });
-  const isFetchingPlanets = useIsFetching({ queryKey: ['planets'] });
-  const isFetchingSpecies = useIsFetching({ queryKey: ['species'] });
-  const isLoading = !!isFetchingPeople || !!isFetchingPlanets || !!isFetchingSpecies;
+  const isFetchingPeople = useIsFetching({ queryKey: ['people', searchTerm] });
+  const isFetchingPlanets = useIsFetching({ queryKey: ['planets', searchTerm] });
+  const isFetchingSpecies = useIsFetching({ queryKey: ['species', searchTerm] });
+  const isFetchingFilms = useIsFetching({ queryKey: ['films', searchTerm] });
+  const isLoading =
+    !!isFetchingPeople || !!isFetchingPlanets || !!isFetchingSpecies || !!isFetchingFilms;
   const showNotFound = resultStatus === 'noData';
 
   return (
