@@ -22,7 +22,7 @@ const Home = () => {
         value={searchTerm}
         onChange={handleChange}
         placeholder="Search.."
-        className="text-md mt-64 w-10/12 rounded-md bg-slate-100 p-2"
+        className="mt-64 w-10/12"
       />
 
       {/* <Suspense fallback={<p>wating all ...</p>}> */}

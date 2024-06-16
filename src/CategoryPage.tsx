@@ -44,7 +44,7 @@ const CategoryPage = () => {
           </p>
         )}
       </div>
-      <div className="fixed top-[93vh] w-full px-8">
+      <div className="fixed bottom-4 w-full px-4 md:px-8">
         {hasNextPage && (
           <button
             className="w-full load-more-btn"
