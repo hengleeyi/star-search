@@ -20,13 +20,13 @@ const Suggestions = memo(({ searchTerm, resultStatus, updateResDataStates }: Sug
   const showNotFound = resultStatus === 'noData';
 
   return (
-    <div className="mt-4 w-10/12 border border-slate-300 rounded-md">
+    <div className="mt-4 w-full md:w-10/12 border border-violet-500 rounded-lg max-h-96 overflow-y-auto p-2 shadow-md">
       <PeopleSuggestion searchTerm={searchTerm} updateResDataStates={updateResDataStates} />
       <PlanetsSuggestion searchTerm={searchTerm} updateResDataStates={updateResDataStates} />
       <SpeciesSuggestion searchTerm={searchTerm} updateResDataStates={updateResDataStates} />
       <FilmsSuggestion searchTerm={searchTerm} updateResDataStates={updateResDataStates} />
-      {isLoading && <div className="bg-indigo-500">Loading ...</div>}
-      {showNotFound && <div>Not Found</div>}
+      {isLoading && <div className="py-1 px-2 text-violet-800">Loading ...</div>}
+      {showNotFound && <div className="py-1 px-2">Not Found :'(</div>}
     </div>
   );
 });

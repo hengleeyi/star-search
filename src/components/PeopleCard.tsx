@@ -47,11 +47,11 @@ const PeopleCard = ({ data: rawData, mode }: PeopleCardProps) => {
           {formData.name}
         </h4>
         <ul className={clsx(isGrid && 'mt-4')}>
-          <li className={clsx('flex', !isGrid && 'flex-col')}>
+          <li className={clsx('flex flex-wrap', !isGrid && 'flex-col')}>
             <h4 className="font-semibold">Gender:</h4>
             <p>{formData.gender}</p>
           </li>
-          <li className={clsx('flex', !isGrid && 'flex-col')}>
+          <li className={clsx('flex flex-wrap', !isGrid && 'flex-col')}>
             <h4 className="font-semibold">Birthday Year:</h4>
             <p>{formData.birth_year}</p>
           </li>

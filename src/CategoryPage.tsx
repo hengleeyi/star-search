@@ -8,7 +8,8 @@ import clsx from 'clsx';
 export type DisplayMode = 'grid' | 'list';
 
 const CategoryPage = () => {
-  const { categoryName } = useParams();
+  const { categoryName = 'Category' } = useParams();
+  const capital = categoryName.charAt(0).toUpperCase() + categoryName.slice(1);
   const [searchParams] = useSearchParams();
   const searchTerm = searchParams.get('search');
 
@@ -22,7 +23,7 @@ const CategoryPage = () => {
   return (
     <>
       <div className="mx-4 flex flex-col md:mx-8">
-        <h1 className="text-3xl py-4">Category</h1>
+        <h1 className="text-3xl py-4">{`${capital} name includes '${searchTerm}'`}</h1>
         <section className="flex py-4 justify-end gap-4">
           <button
             className={clsx('tab', isGrid && 'tab-active')}
