@@ -1,4 +1,4 @@
-# Star Wars Search 🌳
+# Star Wars Search 🚀
 
 ## Preview
 
