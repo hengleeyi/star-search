@@ -57,10 +57,10 @@
   }
 
   .modal-wrapper {
-    @apply fixed top-0 left-0 w-full h-full z-20 overflow-x-hidden overflow-y-auto outline-0 flex items-center;
+    @apply fixed top-0 left-0 bottom-0 w-full h-dvh z-20 overflow-x-hidden overflow-y-auto outline-0 flex items-center;
   }
   .modal {
-    @apply relative flex flex-col m-auto md:rounded-2xl w-full h-dvh md:h-auto md:max-w-2xl p-8 bg-white;
+    @apply relative bottom-0 flex flex-col m-auto md:rounded-2xl w-full h-dvh md:h-auto md:max-w-2xl p-8 bg-white;
   }
 
   .modal-header {
