@@ -11,6 +11,8 @@ https://star-search.vercel.app/
 - React 18.2
 - Typescript 5.2
 - Tailwind CSS
+- React Router 6
+- React Query 5
 
 ## Installing Dependencies
 

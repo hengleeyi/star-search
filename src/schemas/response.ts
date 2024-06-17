@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { peopleSchema, planetSchema, specieSchema, filmSchema } from './resources';
+import { peopleSchema, planetSchema, specieSchema, filmSchema, vehiclesSchema, starshipsSchema } from './resources';
 
 export const baseResponseSchema = z.object({
   count: z.number(),
@@ -36,11 +36,27 @@ export const filmsResponseSchema = baseResponseSchema.extend({
 
 export type Film = z.infer<typeof filmSchema>;
 
+export const vehiclesResponseSchema = baseResponseSchema.extend({
+  results: z.array(vehiclesSchema),
+});
+
+export type Vehicles = z.infer<typeof vehiclesSchema>;
+
+//starshipsResponseSchema
+
+export const starshipsResponseSchema = baseResponseSchema.extend({
+  results: z.array(starshipsSchema),
+});
+
+export type Starships = z.infer<typeof starshipsSchema>;
+
 export type ResourceResponseMap = {
   people: z.infer<typeof peopleResponseSchema>;
   planets: z.infer<typeof planetsResponseSchema>;
   species: z.infer<typeof speciesResponseSchema>;
   films: z.infer<typeof filmsResponseSchema>;
+  vehicles: z.infer<typeof vehiclesResponseSchema>;
+  starships: z.infer<typeof starshipsResponseSchema>;
 };
 
 export type ResourceResponseType = keyof ResourceResponseMap;

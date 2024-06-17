@@ -7,6 +7,8 @@ const PeopleSuggestion = lazy(() => import('./PeopleSuggestion'));
 const PlanetsSuggestion = lazy(() => import('./PlanetsSuggestion'));
 const SpeciesSuggestion = lazy(() => import('./SpeciesSuggestion'));
 const FilmsSuggestion = lazy(() => import('./FilmsSuggestion'));
+const VehiclesSuggestion = lazy(() => import('./VehiclesSuggestion'));
+const StarshipsSuggestion = lazy(() => import('./StarshipsSuggestion'));
 
 type SuggestionsProps = {
   searchTerm: string;
@@ -19,8 +21,15 @@ const Suggestions = memo(({ searchTerm, resultStatus, updateResDataStates }: Sug
   const isFetchingPlanets = useIsFetching({ queryKey: ['planets', searchTerm] });
   const isFetchingSpecies = useIsFetching({ queryKey: ['species', searchTerm] });
   const isFetchingFilms = useIsFetching({ queryKey: ['films', searchTerm] });
+  const isFetchingVehicles = useIsFetching({ queryKey: ['vehicles', searchTerm] });
+  const isFetchingStarships = useIsFetching({ queryKey: ['starships', searchTerm] });
   const isLoading =
-    !!isFetchingPeople || !!isFetchingPlanets || !!isFetchingSpecies || !!isFetchingFilms;
+    !!isFetchingPeople ||
+    !!isFetchingPlanets ||
+    !!isFetchingSpecies ||
+    !!isFetchingFilms ||
+    !!isFetchingVehicles ||
+    !!isFetchingStarships;
   const showNotFound = resultStatus === 'noData';
 
   return (
@@ -39,6 +48,12 @@ const Suggestions = memo(({ searchTerm, resultStatus, updateResDataStates }: Sug
         </Suspense>
         <Suspense>
           <FilmsSuggestion searchTerm={searchTerm} updateResDataStates={updateResDataStates} />
+        </Suspense>
+        <Suspense>
+          <VehiclesSuggestion searchTerm={searchTerm} updateResDataStates={updateResDataStates} />
+        </Suspense>
+        <Suspense>
+          <StarshipsSuggestion searchTerm={searchTerm} updateResDataStates={updateResDataStates} />
         </Suspense>
         {!isLoading && resultStatus === 'init' && (
           <div className="py-1 px-2 text-violet-800">Loading ...</div>

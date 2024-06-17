@@ -125,9 +125,9 @@ export const peopleSchema: z.ZodType<IPeopleType> = z.lazy(() => z.object({
   created: z.string(),
   edited: z.string(),
   species: z.union([z.array(z.string()), z.array(z.lazy(() => specieSchema))]),
-  starships: z.union([z.array(z.string()), z.array(z.lazy(() => starshipSchema))]),
+  starships: z.union([z.array(z.string()), z.array(z.lazy(() => starshipsSchema))]),
   url: z.string(),
-  vehicles: z.union([z.array(z.string()), z.array(z.lazy(() => vehicleSchema))]),
+  vehicles: z.union([z.array(z.string()), z.array(z.lazy(() => vehiclesSchema))]),
 }));
 
 export const planetSchema: z.ZodType<IPlanetType> = z.lazy(() => z.object({
@@ -165,7 +165,7 @@ export const specieSchema: z.ZodType<ISpecieType> = z.lazy(() => z.object({
   url: z.string(),
 }));
 
-const starshipSchema: z.ZodType<IStarshipType> = z.lazy(() => z.object({
+export const starshipsSchema: z.ZodType<IStarshipType> = z.lazy(() => z.object({
   MGLT: z.string(),
   cargo_capacity: z.string(),
   consumables: z.string(),
@@ -186,7 +186,7 @@ const starshipSchema: z.ZodType<IStarshipType> = z.lazy(() => z.object({
   url: z.string(),
 }));
 
-const vehicleSchema: z.ZodType<IVehicleType> = z.lazy(() => z.object({
+export const vehiclesSchema: z.ZodType<IVehicleType> = z.lazy(() => z.object({
   cargo_capacity: z.string(),
   consumables: z.string(),
   cost_in_credits: z.string(),
@@ -216,17 +216,8 @@ export const filmSchema: z.ZodType<IFilmType> = z.lazy(() => z.object({
   producer: z.string(),
   release_date: z.string(),
   species: z.union([z.array(z.string()), z.array(z.lazy(() => specieSchema))]),
-  starships: z.union([z.array(z.string()), z.array(z.lazy(() => starshipSchema))]),
+  starships: z.union([z.array(z.string()), z.array(z.lazy(() => starshipsSchema))]),
   title: z.string(),
   url: z.string(),
-  vehicles: z.union([z.array(z.string()), z.array(z.lazy(() => vehicleSchema))]),
+  vehicles: z.union([z.array(z.string()), z.array(z.lazy(() => vehiclesSchema))]),
 }));
-
-// const ResourcesType = z.enum([
-//   'films',
-//   'people',
-//   'planets',
-//   'species',
-//   'starships',
-//   'vehicles',
-// ]);

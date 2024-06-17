@@ -17,9 +17,9 @@ const Home = () => {
   };
   return (
     <div className="mx-8 flex flex-col items-center">
-      <head className='h-48 flex items-center'>
+      <header className='h-48 flex items-center'>
         <h1 className='text-4xl font-bold text-violet-900'>Star Wars Search</h1>
-      </head>
+      </header>
       <input
         type="text"
         value={searchTerm}

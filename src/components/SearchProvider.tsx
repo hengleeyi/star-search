@@ -2,7 +2,14 @@ import { createContext, useCallback, useContext, useMemo } from 'react';
 import { checkResultStatus } from '../lib/utils';
 import { useImmer } from 'use-immer';
 
-const initNotFoundStates = { people: null, planets: null, species: null, films: null };
+const initNotFoundStates = {
+  people: null,
+  planets: null,
+  species: null,
+  films: null,
+  starships: null,
+  vehicles: null,
+};
 export type ResourceKeys = keyof typeof initNotFoundStates;
 export type ResDataStates = Record<ResourceKeys, boolean | null>;
 export type ResultStatus = 'init' | 'hasData' | 'noData' | 'someData';
